@@ -1,0 +1,67 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pyrecon", "hydro_driver"]
+
+[project]
+name = "pyrecon"
+version = "0.1.0"
+requires-python = ">=3.9"
+license = "BSD-3-Clause"
+dependencies = [
+  "numpy",
+  "numba",
+]
+
+[tool.ruff.lint]
+select = [
+  "E",     # pycodestyle
+  "F",     # pyflakes
+  # "I",   # isort
+  # "B",   # bugbear
+  # "UP",  # pyupgrade
+]
+
+fixable = ["ALL"]
+        
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+ignore = [
+  "E731", # lambda vs def
+  "C90",  # mccabe complexity
+]
+
+[tool.ruff]
+
+line-length = 80
+indent-width = 2
+
+[tool.ruff.format]
+
+# Use double quotes for strings.
+quote-style = "double"
+indent-style = "space"
+
+# Respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules -v -rfs"
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL", "NUMBER"]
+filterwarnings = [
+  "error",
+  "ignore::RuntimeWarning",
+  "ignore::numba.core.errors.NumbaWarning",
+]
+
+[tool.mypy]
+plugins = ["numpy.typing.mypy_plugin"]
+ignore_missing_imports = true

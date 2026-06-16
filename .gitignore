@@ -1,0 +1,16 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+
+*.bak
+
+# _*.py
+
+# *.txt
+# *.md
+
+*.priv.*
+
+.*
+docs/build/
